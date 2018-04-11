@@ -29,6 +29,7 @@ for (let i = 0; i < index; i++) {
 function updateStats() {
 	document.getElementById("start").textContent = "";
 	document.getElementById("wordBlanks").textContent = blanks.join(" ");
+	document.getElementById("guessesLeft").textContent = "Guesses Left: " + guessesLeft;
 	document.getElementById("guesses").textContent = "Guesses: " + guesses.join(" ");
 }
 
@@ -43,18 +44,16 @@ document.onkeyup = function(event) {
 	guess = String.fromCharCode(event.keyCode).toLowerCase();
 	updateStats();
 
-	for (let i = 0; i < index; i++) {
+	for (i = 0; i < index; i++) {
 		if (guess.includes(randomWordArray[i])) {
 			blanks[i] = guess;
 			document.getElementById("wordBlanks").textContent = blanks.join(" ");
-			document.getElementById("guessesLeft").textContent = "Guesses Left: " + guessesLeft;
 		}
 	}
 
 	if (!guess.includes(randomWordArray[i])) {
 			guesses.push(guess);
 			guessesLeft--;
-			document.getElementById("guessesLeft").textContent = "Guesses Left: " + guessesLeft;
 		}
 
 	if (blanks.toString() === randomWordArray.toString()) {
