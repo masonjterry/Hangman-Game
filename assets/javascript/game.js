@@ -8,7 +8,7 @@ let losses = 0;
 // guesses vars
 let guess;
 let guesses = [];
-let guessesLeft = 12;
+let guessesLeft = 13;
 
 // random word vars
 let randomWord;
@@ -42,18 +42,21 @@ function clearStats() {
 // key press function
 document.onkeyup = function(event) {
 	guess = String.fromCharCode(event.keyCode).toLowerCase();
+	guessesLeft--;
 	updateStats();
 
 	for (i = 0; i < index; i++) {
 		if (guess.includes(randomWordArray[i])) {
 			blanks[i] = guess;
 			document.getElementById("wordBlanks").textContent = blanks.join(" ");
+			guessesLeft++;
+			updateStats();
 		}
 	}
 
 	if (!guess.includes(randomWordArray[i])) {
 			guesses.push(guess);
-			guessesLeft--;
+			updateStats();
 		}
 
 	if (blanks.toString() === randomWordArray.toString()) {
