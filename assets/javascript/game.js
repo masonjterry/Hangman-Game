@@ -41,23 +41,23 @@ function clearStats() {
 
 // key press function
 document.onkeyup = function(event) {
+	let correct = false;
 	guess = String.fromCharCode(event.keyCode).toLowerCase();
 	guessesLeft--;
 	updateStats();
 
-	for (i = 0; i < index; i++) {
+	for (let i = 0; i < index; i++) {
 		if (guess.includes(randomWordArray[i])) {
 			blanks[i] = guess;
 			document.getElementById("wordBlanks").textContent = blanks.join(" ");
-			guessesLeft++;
 			updateStats();
 		}
 	}
 
-	if (!guess.includes(randomWordArray[i])) {
+	if (!correct) {
 			guesses.push(guess);
 			updateStats();
-		}
+	}
 
 	if (blanks.toString() === randomWordArray.toString()) {
 		document.getElementById("start").textContent = "You Won!";
